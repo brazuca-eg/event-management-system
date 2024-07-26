@@ -1,4 +1,4 @@
-package com.kravchenko.events.event_ms.dto.response;
+package com.kravchenko.events.users_ms.dto.response;
 
 public record UserResponse(
         String id,

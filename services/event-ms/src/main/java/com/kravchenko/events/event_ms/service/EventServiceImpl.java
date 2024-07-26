@@ -23,7 +23,6 @@ public class EventServiceImpl implements EventService {
         this.usersClient = usersClient;
     }
 
-
     @Override
     public String createEvent(CreateEventRequest eventRequest) {
         UserResponse host = usersClient.findUserById(eventRequest.hostId())
