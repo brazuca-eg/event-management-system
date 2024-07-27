@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 
 public record CreateEventRequest(
 
-        Integer id,
         @NotNull(message = "Host of the event is required")
         @NotBlank(message = "Host of the event is required")
         @NotEmpty(message = "Host of the event is required")
@@ -27,9 +26,9 @@ public record CreateEventRequest(
         @Positive(message = "Duration should be positive")
         int duration,
         @NotNull(message = "Event's places is required")
-        @Positive(message = "Places should be positive")
+        @Positive(message = "Event's places should be positive")
         int places,
-        @Positive(message = "Price should be positive")
+        @Positive(message = "Event's price should be positive")
         BigDecimal price,
         @NotNull(message = "Event's platform is required")
         String platform,
