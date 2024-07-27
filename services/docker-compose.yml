@@ -1,0 +1,39 @@
+services:
+  postgres-users-ms:
+    image: postgres:16.3
+    container_name: users_ms_db
+    environment:
+      POSTGRES_DB: users_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+    volumes:
+      - users_db_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  postgres-events-ms:
+    image: postgres:16.3
+    container_name: events_ms_db
+    environment:
+      POSTGRES_DB: events_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5435:5432"
+    volumes:
+      - events_db_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  users_db_data:
+    driver: local
+  events_db_data:
+    driver: local

@@ -26,11 +26,13 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @Column(name = "host_id")
+    @Column(name = "host_id", nullable = false, length = 64)
     private String hostId;
 
+    @Column(nullable = false, length = 128)
     private String name;
 
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "start_date")
@@ -40,10 +42,13 @@ public class Event {
 
     private int places;
 
+    @Column(name = "price", precision = 10, scale = 2)
     private BigDecimal price;
 
+    @Column(name = "platform", length = 128)
     private String platform;
 
+    @Column(name = "link_to_event", length = 1024)
     private String linkToEvent;
 
 }
