@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestControllerAdvice
 public class GlobalEventExceptionHandler {
@@ -34,5 +35,12 @@ public class GlobalEventExceptionHandler {
                 });
 
         return ResponseEntity.status(BAD_REQUEST).body(new ErrorResponse(errors));
+    }
+
+    @ExceptionHandler(EventNotFoundException.class)
+    public ResponseEntity<String> handle(EventNotFoundException ex) {
+        return ResponseEntity
+                .status(NOT_FOUND)
+                .body(ex.getMessage());
     }
 }

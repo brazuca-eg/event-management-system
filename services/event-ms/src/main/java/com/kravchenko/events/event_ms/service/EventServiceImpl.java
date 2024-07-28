@@ -7,6 +7,7 @@ import com.kravchenko.events.event_ms.dto.response.EventResponse;
 import com.kravchenko.events.event_ms.dto.response.UserResponse;
 import com.kravchenko.events.event_ms.entity.Event;
 import com.kravchenko.events.event_ms.exception.BusinessException;
+import com.kravchenko.events.event_ms.exception.EventNotFoundException;
 import com.kravchenko.events.event_ms.repository.EventRepository;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
@@ -54,5 +55,13 @@ public class EventServiceImpl implements EventService {
         return events.stream()
                 .map(event -> conversionService.convert(event, EventResponse.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public EventResponse findById(String id) {
+        Event event = eventRepository.findById(id)
+                .orElseThrow(() -> new EventNotFoundException("There is no event with the provided id."));
+
+        return conversionService.convert(event, EventResponse.class);
     }
 }
