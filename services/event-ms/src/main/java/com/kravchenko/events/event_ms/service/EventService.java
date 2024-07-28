@@ -11,4 +11,6 @@ public interface EventService {
     String createEvent(CreateEventRequest eventRequest);
 
     List<EventResponse> findEvents(EventFilter eventFilter);
+
+    EventResponse findById(String id);
 }
