@@ -41,6 +41,17 @@ services:
     networks:
       - app-network
 
+  mongodb-notifications-ms:
+    image: mongo
+    container_name: notifications_ms_db
+    ports:
+      - 27018:27017
+    volumes:
+      - notifications_db_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=mongo
+
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
@@ -80,4 +91,6 @@ volumes:
   events_db_data:
     driver: local
   bookings_db_data:
+    driver: local
+  notifications_db_data:
     driver: local
